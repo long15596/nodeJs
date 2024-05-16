@@ -3,6 +3,7 @@ import User from "../entity/User";
 import {AppDataSource} from "../data-source";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import {SECRET} from "../middleware/authority";
 
 class UserService implements IService<User>{
     private repository = AppDataSource.getRepository(User)
@@ -37,7 +38,7 @@ class UserService implements IService<User>{
                     password: userFind.password
                 }
                 let secret = "Day La Cai Khoa"
-                let token = jwt.sign(payload, secret, {
+                let token = jwt.sign(payload, SECRET, {
                     expiresIn: 3600
                 })
                 return {token, id : userFind.id, username: userFind.username}
