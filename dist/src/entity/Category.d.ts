@@ -1,6 +1,6 @@
-import { Product } from "./Product";
+import { SubCategory } from "./SubCategory";
 export default class Category {
     id: number;
     name: string;
-    product: Product[];
+    subCategory: SubCategory[];
 }

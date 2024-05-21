@@ -8,7 +8,9 @@ class ProductService {
         this.findAll = async () => {
             return await this.repository.find({
                 relations: {
-                    category: true
+                    subCategory: true,
+                    brand: true,
+                    productShows: true
                 }
             });
         };

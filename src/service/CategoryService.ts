@@ -7,21 +7,21 @@ class CategoryService implements IService<Category> {
     findAll = async () => {
         return await this.repository.find({
             relations: {
-                product: true
+                subCategory: true
             }
         });
     }
 
-    save(data: Category) {
-        throw new Error("Method not implemented.");
+    save = (data: Category) => {
+        return this.repository.save(data);
     }
 
-    update(id: number, data: Category) {
-        throw new Error("Method not implemented.");
+    update = (id: number, data: Category) => {
+        return this.repository.update(id, data);
     }
 
-    findById(id: number) {
-        throw new Error("Method not implemented.");
+    findById = (id: number) => {
+        return this.repository.find({where: {id: id}});
     }
 
     delete(id: number) {

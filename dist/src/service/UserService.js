@@ -7,6 +7,7 @@ const User_1 = __importDefault(require("../entity/User"));
 const data_source_1 = require("../data-source");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const authority_1 = require("../middleware/authority");
 class UserService {
     constructor() {
         this.repository = data_source_1.AppDataSource.getRepository(User_1.default);
@@ -29,7 +30,7 @@ class UserService {
                         password: userFind.password
                     };
                     let secret = "Day La Cai Khoa";
-                    let token = jsonwebtoken_1.default.sign(payload, secret, {
+                    let token = jsonwebtoken_1.default.sign(payload, authority_1.SECRET, {
                         expiresIn: 3600
                     });
                     return { token, id: userFind.id, username: userFind.username };

@@ -1,5 +1,6 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Product} from "./Product";
+import {SubCategory} from "./SubCategory";
 
 @Entity()
 export default class Category {
@@ -7,6 +8,6 @@ export default class Category {
     id: number
     @Column()
     name: string
-    @OneToMany(() => Product, (product) => product.category)
-    product: Product[]
+    @OneToMany(() => SubCategory, subCategory => subCategory.category)
+    subCategory: SubCategory[];
 }

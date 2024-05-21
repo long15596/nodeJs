@@ -1,5 +1,7 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import Category from "./Category";
+import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Brand} from "./Brand";
+import {ProductShow} from "./ProductShow";
+import {SubCategory} from "./SubCategory";
 
 @Entity()
 export class Product {
@@ -8,7 +10,15 @@ export class Product {
     @Column()
     name: string;
     @Column()
-    price: number;
-    @ManyToOne(() => Category, (category) => category.id)
-    category: Category
+    basePrice: number;
+    @Column()
+    status: string;
+    @Column({length: 1000})
+    image: string;
+    @ManyToOne(() => SubCategory, (subCategory) => subCategory.id)
+    subCategory: SubCategory;
+    @ManyToOne(() => Brand, (brand) => brand.id)
+    brand: Brand
+    @OneToMany(() => ProductShow, (productShow) => productShow.product)
+    productShows: ProductShow[];
 }

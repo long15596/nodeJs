@@ -11,19 +11,19 @@ class CategoryService {
         this.findAll = async () => {
             return await this.repository.find({
                 relations: {
-                    product: true
+                    subCategory: true
                 }
             });
         };
-    }
-    save(data) {
-        throw new Error("Method not implemented.");
-    }
-    update(id, data) {
-        throw new Error("Method not implemented.");
-    }
-    findById(id) {
-        throw new Error("Method not implemented.");
+        this.save = (data) => {
+            return this.repository.save(data);
+        };
+        this.update = (id, data) => {
+            return this.repository.update(id, data);
+        };
+        this.findById = (id) => {
+            return this.repository.find({ where: { id: id } });
+        };
     }
     delete(id) {
         throw new Error("Method not implemented.");
